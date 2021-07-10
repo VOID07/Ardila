@@ -1,10 +1,12 @@
+package platos;
+
 public class Plato{
     private String[] nombrePlatos = null;
     private int[] tiempoPlatos = null;
     private String nombre = null;
     private int tiempo = 0;
 
-    public Platos(int p_opcion){
+    public Plato(int p_opcion){
         this.setNombrePlatos();
         this.setTiempoPlatos();
         this.setPlato(p_opcion);
