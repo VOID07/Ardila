@@ -13,7 +13,6 @@ public class Cajero extends Empleado{
         super("Cajero");
         this.colaCocina = p_cocina;
         setColaCocina(p_cocina);
-        System.out.println(p_cocina==getColaCocina());
     }
 
     // Getters and setters
