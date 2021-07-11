@@ -17,6 +17,8 @@ public class Empleado extends Thread {
        System.out.println("MyThread running");
     }
 
+    // Getters and setters
+    
     private void setRol(String p_rol){
         this.rol = p_rol;
     }

@@ -5,17 +5,30 @@ public class Plato{
     private int[] tiempoPlatos = null;
     private String nombre = null;
     private int tiempo = 0;
+    private int numOrden = 0;
 
-    public Plato(int p_opcion){
+    public Plato(int p_opcion, int p_num_orden){
         this.setNombrePlatos();
         this.setTiempoPlatos();
         this.setPlato(p_opcion);
+        this.setNumOrden(p_num_orden);
     }
 
     private void setNombrePlatos(){
         this.nombrePlatos = new String[]{"Hamburguesa","Chalupas", "Papas fritas", 
                                         "Perros calientes", "Cazados"};
     }
+
+
+    // Getters and setters
+    public int getNumorden(){
+        return this.numOrden;
+    }
+
+    private void setNumOrden(int p_num_orden){
+        this.numOrden = p_num_orden;
+    }
+
     private String getNombrePlatos(int p_pos){
         return this.nombrePlatos[p_pos];
     }
