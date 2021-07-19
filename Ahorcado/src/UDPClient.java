@@ -16,7 +16,7 @@ public class UDPClient {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        var client = new Client();
+        Client client = new Client();
         System.out.println("Envia 'start' para iniciar el juego");
         client.start();
         while (true) {
