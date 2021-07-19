@@ -47,11 +47,11 @@ public class Client extends Thread {
 
     public void read() {
         try {
-            var buffer = new byte[400];
+            byte[] buffer = new byte[400];
 
             in = new DatagramPacket(buffer, 0, buffer.length);
             socket.receive(in);
-            var info = new String(in.getData());
+            String info = new String(in.getData());
             System.out.println(info.replaceAll("\\s+"," "));
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
