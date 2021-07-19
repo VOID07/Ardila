@@ -1,9 +1,9 @@
-package udp;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package udp;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -34,11 +34,9 @@ public class Client extends Thread {
 
     public void send() {
         try {
-            Scanner readIn = new Scanner(System.in);
-            System.out.println("Message");
-            String info = readIn.nextLine();
-            readIn.close();
-            out = new DatagramPacket(info.getBytes(), info.getBytes().length, InetAddress.getLocalHost(), 8721);
+            Scanner read = new Scanner(System.in);
+            String info = read.nextLine();
+            out = new DatagramPacket(info.getBytes(), info.getBytes().length, InetAddress.getLocalHost(), 5000);
             socket.send(out);
         } catch (UnknownHostException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
@@ -49,12 +47,12 @@ public class Client extends Thread {
 
     public void read() {
         try {
-            byte[] buffer = new byte[400];
+            var buffer = new byte[400];
 
             in = new DatagramPacket(buffer, 0, buffer.length);
             socket.receive(in);
-            String info = new String(in.getData());
-            System.out.println(info);
+            var info = new String(in.getData());
+            System.out.println(info.replaceAll("\\s+"," "));
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }

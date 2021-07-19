@@ -13,8 +13,6 @@ import java.net.SocketException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import udp.resources.Resource;
-
 /**
  *
  * @author jeanr
@@ -28,33 +26,37 @@ public class Server extends Thread{
     {
         this.port = p_port;
         try {
-            socket = new DatagramSocket(p_port);
+            socket = new DatagramSocket(p_port); 
         } catch (SocketException ex) {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public Resource read()
+    public void read()
     {
         byte[] buffer = new byte[400];
-        in = new DatagramPacket(buffer, 0, buffer.length);
+        in = new DatagramPacket(buffer, 0, buffer.length); 
         String message = "";
-        boolean newServer = false;
         try {
-            socket.receive(in);
+            this.socket.receive(in);
             message = new String(in.getData());
-            if (message != null || message != ""){
-                newServer = true;
+            message = message.substring(0,5);
+            System.out.println(message.toLowerCase());
+            if (message.toLowerCase().equals("start")){
+                GameServer game = new GameServer(socket, in);
+                game.start();
+                game.join();
+            } else {
+                String mess = "\nIntentaluelo nuevamente, envia 'start' para iniciar";
+                send(mess, in);
             }
-            System.out.println(message);
         } catch (IOException ex) {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
-            return this.read();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-        Resource response = new Resource(newServer, in);
-        return response;
     }
-    
+
     public void send(final String info, final DatagramPacket client)
     {
         try {
@@ -67,20 +69,8 @@ public class Server extends Thread{
 
     @Override
     public void run() {
-        boolean newServer = false;
-        Resource newResource = null;
         while(true){
-            newResource = this.read();
-            newServer = newResource.newServer;
-            this.port = newServer ? (++this.port) : port;
-            if (newServer){
-                Server newThread = new Server(this.port);
-                newThread.start();
-                send(String.valueOf(this.port), newResource.in);
-                System.out.println("New gameServer listening at " + this.port);
-            }
-            newServer = false;
-            newResource = null;
+            read();
         }
     }
 }
