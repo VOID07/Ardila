@@ -1,0 +1,5 @@
+Para nuestro trabajo de TCP vamos hacer un sistema que se encargue de atender muchos clientes que van a poder jugar Ahorcado. 
+El juego consiste en que el servidor envía una palabra al cliente, este debe adivinar cual es la palabra enviando una letra a la vez. 
+El servidor debe validar la letra e indicarle al cliente si la letra existe o no en la palabra. 
+En el momento que el cliente adivine la palabra el servidor le debe indicar esto y enviarle una nueva palabra para adivinar. 
+El usuario tiene n cantidad de oportunidades para adivinar la palabra.

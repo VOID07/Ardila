@@ -1,0 +1,7 @@
+{
+    "java.project.sourcePaths": [
+        "Cocina/src/main",
+        "Ahorcado/src",
+        "AhorcadoTCP/src"
+    ]
+}
