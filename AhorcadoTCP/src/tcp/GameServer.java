@@ -102,7 +102,7 @@ public class GameServer  implements Runnable {
         while(running){
             read();
             if (pos == -1){
-                break;
+                stop();
             }
         }
     }
