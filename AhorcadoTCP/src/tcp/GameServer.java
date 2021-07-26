@@ -7,7 +7,7 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class GameServer extends Thread{
+public class GameServer  implements Runnable {
 
     private String[] palabras = null;
     private String[] respuestas = null;
@@ -38,7 +38,7 @@ public class GameServer extends Thread{
         try {
             String mess = in.readUTF().toLowerCase();
             if (mess.equals("stop")){
-                running = false;
+                stop();
                 return;
             }
             String letra = mess.substring(0,1);
@@ -79,6 +79,18 @@ public class GameServer extends Thread{
         try {
             out.writeUTF(info);
             out.flush();
+        } catch (IOException ex) {
+            Logger.getLogger(GameServer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void stop()
+    {
+        try {
+            out.close();
+            in.close();
+            socket.close();
+            running= false;
         } catch (IOException ex) {
             Logger.getLogger(GameServer.class.getName()).log(Level.SEVERE, null, ex);
         }
