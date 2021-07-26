@@ -17,7 +17,7 @@ public class Client {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        var client = new TCPClient();
+        TCPClient client = new TCPClient();
         client.start();
         while (true) {
             client.read();

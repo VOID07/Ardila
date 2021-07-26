@@ -40,7 +40,7 @@ public class Server {
     private void accept() throws IOException {
         while (true) {
             socket = serverSocket.accept();
-            var client = new GameServer(socket);
+            GameServer client = new GameServer(socket);
             clientList.add(client);
             service.submit(client);
         }

@@ -40,7 +40,7 @@ public class TCPClient extends Thread{
     public void read()
     {
         try {
-            var info = in.readUTF();
+            String info = in.readUTF();
             System.out.println(info);
         } catch (IOException ex) {
             Logger.getLogger(TCPClient.class.getName()).log(Level.SEVERE, null, ex);
@@ -50,7 +50,7 @@ public class TCPClient extends Thread{
     public void write()
     {
         try {
-            var info = JOptionPane.showInputDialog("Message");
+            String info = JOptionPane.showInputDialog("Message");
             out.writeUTF(info);
             out.flush();
         } catch (IOException ex) {
